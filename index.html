@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tower of Hanoi</title>
+    <style>
+        /* 底座 */
+        #base{
+            height: 15vh;
+            width: 60vw;
+            position: absolute;
+            top: 70vh;
+            left: 15vw;
+            border-style: groove;
+            border-width: 10px;
+            z-index: 1;
+        }
+        /* 柱子 */
+        .column{
+            height: 60vh;
+            width: 6vw;
+            border-style: double;
+            position: absolute;
+            z-index: 999;
+            top: 20vh;
+        }
+        #first{
+            left: 20vw;
+        }
+        #second{
+            left: 40vw;
+        }
+        #third{
+            left: 60vw;
+        }
+        /* 按钮 */
+        .push_bottom{
+            border-style: ridge;
+            border-width: 4px;
+            position: absolute;
+            width: 4vw;
+            height: 8vh;
+            top: 90vh;
+            text-align: center;
+        }
+        #a{
+            left: 20vw;
+        }
+        #b{
+            left: 38vw;
+        }
+        #c{
+            left: 44vw;
+        }
+        #d{
+            left: 61vw;
+        }
+    </style>
+</head>
+<body>
+    <!-- 底座 -->
+    <div id="base">
+
+    </div>
+
+    <!-- 柱子 -->
+    
+    <div id="first" class="column">
+
+    </div>
+    <div id="second" class="column">
+
+    </div>
+    <div id="third" class="column">
+
+    </div>
+
+
+    <!-- 圆环1-7 -->
+    <div id="one">
+
+    </div>
+    <div id="two">
+
+    </div>
+    <div id="three">
+
+    </div>
+    <div id="four">
+
+    </div>
+    <div id="five">
+
+    </div>
+    <div id="six">
+
+    </div>
+    <div id="seven">
+
+    </div>
+
+    <!-- 按钮 -->
+    <div id="a" class="push_bottom">
+        <h2 style="line-height: 5vh;">右</h2>
+    </div>
+    <div id="b" class="push_bottom">
+        <h2 style="line-height: 5vh;">左</h2>
+    </div>
+    <div id="c" class="push_bottom">
+        <h2 style="line-height: 5vh;">右</h2>
+    </div>
+    <div id="d" class="push_bottom">
+        <h2 style="line-height: 5vh;">左</h2>
+    </div>
+</body>
+</html>
