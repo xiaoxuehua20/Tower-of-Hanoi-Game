@@ -22,16 +22,16 @@
             width: 6vw;
             border-style: double;
             position: absolute;
-            z-index: 999;
+            z-index: 99;
             top: 20vh;
         }
-        #first{
+        #column_first{
             left: 20vw;
         }
-        #second{
+        #column_second{
             left: 40vw;
         }
-        #third{
+        #column_third{
             left: 60vw;
         }
         /* 按钮 */
@@ -42,19 +42,73 @@
             width: 4vw;
             height: 8vh;
             top: 90vh;
-            text-align: center;
         }
-        #a{
+        #push_bottom_a{
             left: 20vw;
         }
-        #b{
+        #push_bottom_b{
             left: 38vw;
         }
-        #c{
+        #push_bottom_c{
             left: 44vw;
         }
-        #d{
+        #push_bottom_d{
             left: 61vw;
+        }
+        /* 圆环 */
+        .circle{
+            border-style: solid;
+            border-width: 3px;
+            border-radius: 10px;
+            border-color: rgb(105, 105, 219);
+            position: absolute;
+            z-index: 100;
+        }
+        #circle_one{
+            height: 7vh;
+            width: 8vw;
+            top: 20vh;
+            left: 19vw;
+        }
+        #circle_two{
+            height: 7vh;
+            width: 10vw;
+            top: 28vh;
+            left: 18vw;
+        }
+        #circle_three{
+            height: 7vh;
+            width: 12vw;
+            top: 36vh;
+            left: 17vw;
+        }
+        #circle_four{
+            height: 7vh;
+            width: 14vw;
+            top: 44vh;
+            left: 16vw;
+        }
+        #circle_five{
+            height: 7vh;
+            width: 16vw;
+            top: 52vh;
+            left: 15vw;
+        }
+        #circle_six{
+            height: 7vh;
+            width: 18vw;
+            top: 60vh;
+            left: 14vw;
+        }
+        #circle_seven{
+            height: 7vh;
+            width: 20vw;
+            top: 68vh;
+            left: 13vw;
+        }
+        h2{
+            text-align: center;
+            margin: 2vh;
         }
     </style>
 </head>
@@ -66,52 +120,190 @@
 
     <!-- 柱子 -->
     
-    <div id="first" class="column">
+    <div id="column_first" class="column">
 
     </div>
-    <div id="second" class="column">
+    <div id="column_second" class="column">
 
     </div>
-    <div id="third" class="column">
+    <div id="column_third" class="column">
 
     </div>
 
 
     <!-- 圆环1-7 -->
-    <div id="one">
-
+    <div id="circle_one" class="circle">
+        <h2>1</h2>
     </div>
-    <div id="two">
-
+    <div id="circle_two" class="circle">
+        <h2>2</h2>
     </div>
-    <div id="three">
-
+    <div id="circle_three" class="circle">
+        <h2>3</h2>
     </div>
-    <div id="four">
-
+    <div id="circle_four" class="circle">
+        <h2>4</h2>
     </div>
-    <div id="five">
-
+    <div id="circle_five" class="circle">
+        <h2>5</h2>
     </div>
-    <div id="six">
-
+    <div id="circle_six" class="circle">
+        <h2>6</h2>
     </div>
-    <div id="seven">
-
+    <div id="circle_seven" class="circle">
+        <h2>7</h2>
     </div>
 
     <!-- 按钮 -->
-    <div id="a" class="push_bottom">
+    <div id="push_bottom_a" class="push_bottom" onclick="move_right_one()">
         <h2 style="line-height: 5vh;">右</h2>
     </div>
-    <div id="b" class="push_bottom">
+    <div id="push_bottom_b" class="push_bottom" onclick="move_left_one()">
         <h2 style="line-height: 5vh;">左</h2>
     </div>
-    <div id="c" class="push_bottom">
+    <div id="push_bottom_c" class="push_bottom" onclick="move_right_two()">
         <h2 style="line-height: 5vh;">右</h2>
     </div>
-    <div id="d" class="push_bottom">
+    <div id="push_bottom_d" class="push_bottom" onclick="move_left_two()">
         <h2 style="line-height: 5vh;">左</h2>
     </div>
+
+    <!-- 函数调用 -->
+    <script>
+        // 柱子上的块数
+        var column_first = 7;
+        var column_second = 0;
+        var column_third = 0;
+        // 柱子上的块数值
+        var column_first_value = [7,6,5,4,3,2,1];
+        var column_second_value = new Array();
+        var column_third_value = new Array();
+        // 圆环值
+        var circle_value = ["one","two","three","four","five","six","seven"];
+        // 圆环对应的位置
+        var circle_top = [20,28,36,44,52,60,68];
+        var circle_one_left = [19,39,59];
+        var circle_two_left = [18,38,58];
+        var circle_three_left = [17,37,57];
+        var circle_four_left = [16,36,56];
+        var circle_five_left = [15,35,55];
+        var circle_six_left = [14,34,54];
+        var circle_seven_left = [13,33,53];
+
+        // 移动函数
+        function move_right_one(){
+            // 判断数值大小，可否移动
+
+            column_first -= 1;      // 减少第一根柱子上的块数
+            column_second += 1;     // 增加第二根柱子上的块数
+            let temp = column_first_value.pop();    // 临时(单次)储存删除的值
+            column_second_value.push(temp);         // 添加到第二根柱子上
+            let circle_number = circle_value[temp-1];   // 移动的圆环值
+            var circle_position                     // 临时存储圆环距边界值
+            switch(`circle_${circle_number}_left`)
+            {
+                case "circle_one_left":circle_position = circle_one_left[1];
+                break;
+                case "circle_two_left":circle_position = circle_two_left[1];
+                break;
+                case "circle_three_left":circle_position = circle_three_left[1];
+                break;
+                case "circle_four_left":circle_position = circle_four_left[1];
+                break;
+                case "circle_five_left":circle_position = circle_five_left[1];
+                break;
+                case "circle_six_left":circle_position = circle_six_left[1];
+                break;
+                case "circle_seven_left":circle_position = circle_seven_left[1];
+                break;
+            }
+            document.getElementById(`circle_${circle_number}`).style.top = `${circle_top[7-column_second]}vh`; // 移动圆环top位置
+            document.getElementById(`circle_${circle_number}`).style.left = `${circle_position}vw`;            // 移动圆环left位置
+        }
+
+        function move_left_one(){
+            column_second -= 1;      // 减少第二根柱子上的块数
+            column_first += 1;     // 增加第一根柱子上的块数
+            let temp = column_second_value.pop();    // 临时(单次)储存删除的值
+            column_first_value.push(temp);         // 添加到第一根柱子上
+            let circle_number = circle_value[temp-1];   // 移动的圆环值
+            var circle_position                     // 临时存储圆环距边界值left
+            switch(`circle_${circle_number}_left`)
+            {
+                case "circle_one_left":circle_position = circle_one_left[0];
+                break;
+                case "circle_two_left":circle_position = circle_two_left[0];
+                break;
+                case "circle_three_left":circle_position = circle_three_left[0];
+                break;
+                case "circle_four_left":circle_position = circle_four_left[0];
+                break;
+                case "circle_five_left":circle_position = circle_five_left[0];
+                break;
+                case "circle_six_left":circle_position = circle_six_left[0];
+                break;
+                case "circle_seven_left":circle_position = circle_seven_left[0];
+                break;
+            }
+            document.getElementById(`circle_${circle_number}`).style.top = `${circle_top[7-column_first]}vh`; // 移动圆环top位置
+            document.getElementById(`circle_${circle_number}`).style.left = `${circle_position}vw`;            // 移动圆环left位置
+        }
+
+        function move_right_two(){
+            column_second -= 1;      // 减少第二根柱子上的块数
+            column_third += 1;     // 增加第三根柱子上的块数
+            let temp = column_second_value.pop();    // 临时(单次)储存删除的值
+            column_third_value.push(temp);         // 添加到第三根柱子上
+            let circle_number = circle_value[temp-1];   // 移动的圆环值
+            var circle_position                     // 临时存储圆环距边界值left
+            switch(`circle_${circle_number}_left`)
+            {
+                case "circle_one_left":circle_position = circle_one_left[2];
+                break;
+                case "circle_two_left":circle_position = circle_two_left[2];
+                break;
+                case "circle_three_left":circle_position = circle_three_left[2];
+                break;
+                case "circle_four_left":circle_position = circle_four_left[2];
+                break;
+                case "circle_five_left":circle_position = circle_five_left[2];
+                break;
+                case "circle_six_left":circle_position = circle_six_left[2];
+                break;
+                case "circle_seven_left":circle_position = circle_seven_left[2];
+                break;
+            }
+            document.getElementById(`circle_${circle_number}`).style.top = `${circle_top[7-column_third]}vh`; // 移动圆环top位置
+            document.getElementById(`circle_${circle_number}`).style.left = `${circle_position}vw`;            // 移动圆环left位置
+        }
+        
+        function move_left_two(){
+            column_third -= 1;      // 减少第三根柱子上的块数
+            column_second += 1;     // 增加第二根柱子上的块数
+            let temp = column_third_value.pop();    // 临时(单次)储存删除的值
+            column_second_value.push(temp);         // 添加到第二根柱子上
+            let circle_number = circle_value[temp-1];   // 移动的圆环值
+            var circle_position                     // 临时存储圆环距边界值left
+            switch(`circle_${circle_number}_left`)
+            {
+                case "circle_one_left":circle_position = circle_one_left[1];
+                break;
+                case "circle_two_left":circle_position = circle_two_left[1];
+                break;
+                case "circle_three_left":circle_position = circle_three_left[1];
+                break;
+                case "circle_four_left":circle_position = circle_four_left[1];
+                break;
+                case "circle_five_left":circle_position = circle_five_left[1];
+                break;
+                case "circle_six_left":circle_position = circle_six_left[1];
+                break;
+                case "circle_seven_left":circle_position = circle_seven_left[1];
+                break;
+            }
+            document.getElementById(`circle_${circle_number}`).style.top = `${circle_top[7-column_second]}vh`; // 移动圆环top位置
+            document.getElementById(`circle_${circle_number}`).style.left = `${circle_position}vw`;            // 移动圆环left位置
+        }
+    </script>
 </body>
 </html>
