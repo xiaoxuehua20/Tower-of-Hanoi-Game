@@ -162,10 +162,10 @@
 
     <!-- 按钮 -->
     <div id="push_bottom_a" class="push_bottom" onclick="move_right_one()">
-        <h2>右短A</h2>
+        <h2>右长A</h2>
     </div>
     <div id="push_bottom_e" class="push_bottom" onclick="move_right_long()">
-        <h2>右长S</h2>
+        <h2>右短S</h2>
     </div>
     <div id="push_bottom_b" class="push_bottom" onclick="move_left_one()">
         <h2>左D</h2>
@@ -416,9 +416,9 @@
         // 按键监听(代替鼠标按钮)执行函数
         document.addEventListener("keydown",function(event){
             switch (event.keyCode){
-                case 65:move_right_one();
+                case 83:move_right_one();
                 break;
-                case 83:move_right_long();
+                case 65:move_right_long();
                 break;
                 case 68:move_left_one();
                 break;
